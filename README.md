@@ -111,3 +111,45 @@ Use it, adapt it, or ignore it.
 The system will decide later who was right.
 
 
+
+---
+
+## Usage with Claude CLI (Human-in-the-loop)
+
+This pattern is intentionally simple and works well with Claude CLI (or any LLM used via terminal).
+
+The key idea is to split work into three explicit stages:
+Plan → Gate → Execute.
+
+### Step 1 — Ask for a plan (NO execution)
+Prompt the model to return ONLY a machine-readable plan.
+
+Example instruction:
+- "Return ONLY a JSON execution plan. Do not make any changes."
+
+Save the output as plan.json.
+
+### Step 2 — Validate the plan (Gate)
+Run the preflight validator with explicit allowlists:
+
+    python3 gate.py plan.json \
+      --allow-path nginx/nginx.conf \
+      --allow-path docker-compose.yml
+
+PASS → plan is within scope  
+FAIL → model must correct the plan
+
+No execution happens at this stage.
+
+### Step 3 — Execute exactly the approved plan
+Only after the plan passes validation, instruct the model:
+- "Execute exactly this plan. Do not modify scope. Return a diff."
+
+This prevents scope creep, unintended file changes, and "helpful" initiative.
+
+### Why this works
+Claude CLI is powerful, but it has no native concept of scope enforcement.
+This pattern adds a mechanical control layer without modifying the model.
+
+Treat the model as an untrusted executor. The operator remains in control.
+
