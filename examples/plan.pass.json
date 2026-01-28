@@ -1,0 +1,15 @@
+{
+  "task": "Require API key for all endpoints except /health via nginx.",
+  "operations": [
+    {
+      "op": "edit_file",
+      "path": "nginx/nginx.conf",
+      "reason": "Add API key guard as explicitly requested"
+    },
+    {
+      "op": "edit_file",
+      "path": "docker-compose.yml",
+      "reason": "Pass VRILLSY_API_KEY into nginx container"
+    }
+  ]
+}

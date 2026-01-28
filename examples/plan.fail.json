@@ -1,0 +1,10 @@
+{
+  "task": "Secure the system",
+  "operations": [
+    {
+      "op": "edit_file",
+      "path": "../docker-compose.yml",
+      "reason": "Probably needs to be updated as well"
+    }
+  ]
+}

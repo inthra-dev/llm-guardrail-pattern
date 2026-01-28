@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/<USER>/<REPO>/blob/main/plan.schema.json",
+  "title": "LLM Execution Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable task summary for auditability."
+    },
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/operation" }
+    }
+  },
+  "required": ["operations"],
+  "$defs": {
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Operation type, e.g. read_file, edit_file."
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Repo-relative path (must be validated by gate.py).",
+          "not": {
+            "anyOf": [
+              { "pattern": "^/" },
+              { "pattern": "^~" },
+              { "pattern": "^(\\.\\./|\\.\\.$)" },
+              { "pattern": "/\\.\\./" },
+              { "pattern": "\\\\\\.\\.\\\\|\\\\\\.\\.$" }
+            ]
+          }
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Non-empty reason explaining why this operation is required."
+        }
+      },
+      "required": ["op", "path", "reason"]
+    }
+  }
+}
+

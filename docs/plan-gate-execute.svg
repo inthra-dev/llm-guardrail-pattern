@@ -1,0 +1,96 @@
+<svg width="900" height="260" viewBox="0 0 900 260"
+     xmlns="http://www.w3.org/2000/svg"
+     font-family="Inter, Arial, sans-serif">
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#111"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle"
+        font-size="20" font-weight="600" fill="#111">
+    LLM Guardrail Pattern — Plan → Gate → Execute
+  </text>
+
+  <!-- PLAN box -->
+  <rect x="60" y="80" rx="12" ry="12"
+        width="220" height="110"
+        fill="#f5f7fa" stroke="#111" stroke-width="2"/>
+  <text x="170" y="110" text-anchor="middle"
+        font-size="16" font-weight="600" fill="#111">
+    PLAN
+  </text>
+  <text x="170" y="135" text-anchor="middle"
+        font-size="13" fill="#333">
+    Machine-readable
+  </text>
+  <text x="170" y="155" text-anchor="middle"
+        font-size="13" fill="#333">
+    Explicit scope
+  </text>
+  <text x="170" y="175" text-anchor="middle"
+        font-size="13" fill="#333">
+    No execution
+  </text>
+
+  <!-- Arrow PLAN -> GATE -->
+  <line x1="280" y1="135" x2="340" y2="135"
+        stroke="#111" stroke-width="2"
+        marker-end="url(#arrow)"/>
+
+  <!-- GATE box -->
+  <rect x="340" y="70" rx="12" ry="12"
+        width="220" height="140"
+        fill="#fff3f3" stroke="#111" stroke-width="2"/>
+  <text x="450" y="100" text-anchor="middle"
+        font-size="16" font-weight="600" fill="#111">
+    GATE
+  </text>
+  <text x="450" y="125" text-anchor="middle"
+        font-size="13" fill="#333">
+    Allowlist validation
+  </text>
+  <text x="450" y="145" text-anchor="middle"
+        font-size="13" fill="#333">
+    Scope enforcement
+  </text>
+  <text x="450" y="165" text-anchor="middle"
+        font-size="13" fill="#333">
+    Abort on violation
+  </text>
+  <text x="450" y="185" text-anchor="middle"
+        font-size="13" fill="#333">
+    No negotiation
+  </text>
+
+  <!-- Arrow GATE -> EXECUTE -->
+  <line x1="560" y1="135" x2="620" y2="135"
+        stroke="#111" stroke-width="2"
+        marker-end="url(#arrow)"/>
+
+  <!-- EXECUTE box -->
+  <rect x="620" y="80" rx="12" ry="12"
+        width="220" height="110"
+        fill="#f1fff3" stroke="#111" stroke-width="2"/>
+  <text x="730" y="110" text-anchor="middle"
+        font-size="16" font-weight="600" fill="#111">
+    EXECUTE
+  </text>
+  <text x="730" y="135" text-anchor="middle"
+        font-size="13" fill="#333">
+    Exact plan only
+  </text>
+  <text x="730" y="155" text-anchor="middle"
+        font-size="13" fill="#333">
+    Deterministic
+  </text>
+  <text x="730" y="175" text-anchor="middle"
+        font-size="13" fill="#333">
+    Auditable output
+  </text>
+
+</svg>
+
